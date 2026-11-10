@@ -39,7 +39,6 @@ public class ServiceController {
     @PostMapping
     public ServiceEntity createService(
             @Valid @RequestBody CreateServiceRequest request) {
-
         return serviceService.createService(request);
     }
 
@@ -47,12 +46,16 @@ public class ServiceController {
     public ServiceEntity updateService(
             @PathVariable Long id,
             @Valid @RequestBody CreateServiceRequest request) {
-
         return serviceService.updateService(id, request);
     }
 
     @PatchMapping("/{id}/deactivate")
     public ServiceEntity deactivateService(@PathVariable Long id) {
         return serviceService.deactivateService(id);
+    }
+
+    @PatchMapping("/{id}/activate")
+    public ServiceEntity activateService(@PathVariable Long id) {
+        return serviceService.activateService(id);
     }
 }

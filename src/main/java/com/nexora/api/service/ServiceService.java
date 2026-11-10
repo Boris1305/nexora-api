@@ -58,8 +58,15 @@ public class ServiceService {
     public ServiceEntity deactivateService(Long id) {
 
         ServiceEntity service = getServiceById(id);
-
         service.setActive(false);
+
+        return serviceRepository.save(service);
+    }
+
+    public ServiceEntity activateService(Long id) {
+
+        ServiceEntity service = getServiceById(id);
+        service.setActive(true);
 
         return serviceRepository.save(service);
     }

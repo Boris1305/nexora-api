@@ -39,7 +39,6 @@ public class ClientController {
     @PostMapping
     public ClientEntity createClient(
             @Valid @RequestBody CreateClientRequest request) {
-
         return clientService.createClient(request);
     }
 
@@ -47,12 +46,16 @@ public class ClientController {
     public ClientEntity updateClient(
             @PathVariable Long id,
             @Valid @RequestBody CreateClientRequest request) {
-
         return clientService.updateClient(id, request);
     }
 
     @PatchMapping("/{id}/deactivate")
     public ClientEntity deactivateClient(@PathVariable Long id) {
         return clientService.deactivateClient(id);
+    }
+
+    @PatchMapping("/{id}/activate")
+    public ClientEntity activateClient(@PathVariable Long id) {
+        return clientService.activateClient(id);
     }
 }

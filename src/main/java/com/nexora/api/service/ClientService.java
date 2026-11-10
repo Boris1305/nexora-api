@@ -83,8 +83,15 @@ public class ClientService {
     public ClientEntity deactivateClient(Long id) {
 
         ClientEntity client = getClientById(id);
-
         client.setActive(false);
+
+        return clientRepository.save(client);
+    }
+
+    public ClientEntity activateClient(Long id) {
+
+        ClientEntity client = getClientById(id);
+        client.setActive(true);
 
         return clientRepository.save(client);
     }
