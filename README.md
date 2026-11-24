@@ -1,4 +1,3 @@
-
 # Nexora — Professional Services Management Platform
 
 Nexora is a REST API for independent professionals and small businesses to manage clients, services, in-person and online appointments, and payment tracking with receipt, with real business rules: no overlapping appointments, rescheduling with traceability, and 48-hour payment deadline.
@@ -136,8 +135,12 @@ The system distinguishes between appointment status and payment status.
 - **Flyway** — Database versioning and migrations.
 - **Maven** — Dependency management and build automation.
 - **Jakarta Bean Validation** — Request validation.
-- **Postman** — API testing.
-- **Git and GitHub** — Version control and project management.
+- **JUnit and Mockito** — Automated testing.
+- **JaCoCo** — Code coverage analysis.
+- **Swagger / OpenAPI** — API documentation.
+- **Postman** — Manual API testing.
+- **Docker** — Containerization and deployment configuration.
+- **Git and GitHub** — Version control and project hosting.
 
 ## API Structure
 
@@ -188,7 +191,19 @@ Nexora uses PostgreSQL for relational data persistence.
 
 Flyway manages database schema changes through versioned SQL migrations.
 
-This approach keeps database changes organized and reproducible across development environments.
+The project includes seven database migrations (V1–V7), validated against PostgreSQL.
+
+Hibernate schema generation is disabled in favor of explicit database migrations.
+
+## API Documentation
+
+Interactive API documentation is available through Swagger UI:
+
+`http://localhost:8080/swagger-ui/index.html`
+
+OpenAPI specification:
+
+`http://localhost:8080/v3/api-docs`
 
 ## Running the Project Locally
 
@@ -204,10 +219,10 @@ This approach keeps database changes organized and reproducible across developme
 Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Boris1305/nexora-api.git
 ```
 
-Navigate to the project directory and configure the database connection in the application configuration.
+Navigate to the project directory and configure the PostgreSQL connection in the local application configuration.
 
 On Windows, run:
 
@@ -237,9 +252,23 @@ On Linux or macOS:
 ./mvnw clean compile
 ```
 
+### Run Tests and Verify the Project
+
+On Windows:
+
+```powershell
+.\mvnw.cmd clean verify
+```
+
+On Linux or macOS:
+
+```bash
+./mvnw clean verify
+```
+
 ## Testing and Validation
 
-The API has been manually tested using Postman.
+The API has been manually tested using Postman and validated through automated tests.
 
 Validated scenarios include:
 
@@ -257,10 +286,16 @@ Validated scenarios include:
 - Rescheduling history and traceability.
 - Receipt review after appointment cancellation.
 - Prevention of rescheduling appointments with `LOST` status.
+- Request validation and exception handling.
 
-The project compiles successfully with Maven.
+### Automated Test Results
 
-Automated unit and integration test coverage is part of the next development stage.
+- **102 tests passed.**
+- **0 failures.**
+- **0 errors.**
+- **93.74% code coverage**, measured with JaCoCo.
+
+The project successfully builds and verifies with Maven.
 
 ## Development Roadmap
 
@@ -277,16 +312,15 @@ Automated unit and integration test coverage is part of the next development sta
 - [x] Payment deadline and expiration.
 - [x] Appointment and payment business rules.
 - [x] Database migrations with Flyway.
-- [ ] Automated unit tests.
-- [ ] Integration tests.
-- [ ] API documentation with Swagger / OpenAPI.
+- [x] Automated tests.
+- [x] API documentation with Swagger / OpenAPI.
 
-### Version 1.1 — Extended Features
+### Version 1.1 — Future Improvements
 
 - [ ] Dashboard and business metrics.
 - [ ] JWT authentication and authorization.
-- [ ] Automatic unpaid appointment expiration improvements.
-- [ ] Deployment to a production environment.
+- [ ] Additional automatic expiration improvements.
+- [ ] Production deployment.
 
 ## Project Goals
 
@@ -304,5 +338,6 @@ It demonstrates the implementation of:
 - Transaction management.
 - Database migrations.
 - Appointment and payment lifecycle management.
+- Automated testing and code coverage.
 
-The project is being developed incrementally, prioritizing maintainability, consistency, and realistic business requirements.
+The project was developed incrementally, prioritizing maintainability, consistency, and realistic business requirements.
